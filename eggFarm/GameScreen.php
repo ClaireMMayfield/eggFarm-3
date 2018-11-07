@@ -107,7 +107,7 @@ fclose($myfile);
 
 var Done = false;
 
-
+var testVar = false;
 
 
 var Game = {
