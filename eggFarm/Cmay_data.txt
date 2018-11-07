@@ -1,0 +1,2 @@
+username:Cmay
+gold:1000

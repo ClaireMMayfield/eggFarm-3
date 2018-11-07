@@ -1,0 +1,2 @@
+username:qwer1
+gold:1000

@@ -1,0 +1,14 @@
+time:100
+gold:1000
+level1animal:'sprite_chick'
+level2animal:'sprite_lizard'
+level3animal:'sprite_dino'
+level4animal:'sprite_deer'
+lessclick:39
+minlevel1click:40
+maxlevel1click:49
+minlevel2click:50
+maxlevel2click:59
+minlevel3click:60
+maxlevel3click:69
+minlevel4click:70
