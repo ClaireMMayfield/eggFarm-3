@@ -36,7 +36,7 @@ else{
 </head>
 <body>
 
- <?php
+<?php
 function auth($username, $password){
 
     $userfile = fopen("user.txt", "r") or die("Unable to open user file:".$username);
@@ -52,7 +52,6 @@ function auth($username, $password){
         }
     return false;
     }
-
 ?>
 <h1>
     Welcome to the Egg Farm!

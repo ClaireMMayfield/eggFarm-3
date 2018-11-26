@@ -1,21 +1,17 @@
 <?php
-
-if(isset($_POST['submit'])) {
-	$firstName = $_POST['firstname'];
-	$lastName = $_POST['lastname'];
-
-	$myfile= fopen("user.txt", "a") or die("file not found");
-	$data = array();
-
-	$txt = $firstName.":".$lastName."\n";
-
-	fwrite($myfile, $firstName.":".$lastName."\n");
-
-	echo "<h2>Data written to user.txt!</h2>";
-
-	// header("Location: index.html"); // redirects back to index.html
-
-	fclose($myfile);
+function auth($username, $password){
+    $userfile = fopen("user.txt", "r") or die("Unable to open user file:".$username);
+    $tmp_arry = [];
+    while(!feof($userfile)){
+        $line = trim(fgets($userfile));
+        $tmp_arry = explode(":", $line);
+        if(!count($tmp_arry)==2){
+            continue;
+        }
+        if($tmp_arry[0] ==$username and $tmp_arry[1]==$password)
+            echo("You are now logged in, ".$username);
+            header("location: your_farm.php");
+    }
+    echo("Log in failed.");
+    return false;
 }
-
-?>

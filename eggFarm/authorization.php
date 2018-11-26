@@ -1,5 +1,7 @@
-<?php
+<!-- Php function for registering a new user by adding their username and password to teh
+user.txt file. !-->
 
+<?php
 session_start();
 error_reporting(0);
 

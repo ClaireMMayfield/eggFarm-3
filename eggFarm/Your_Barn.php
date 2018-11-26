@@ -34,12 +34,27 @@
     <body>
         <h1>Welcome to your Barn!</h1>
         <h3>Click on an animal to look at their health!</h3>
-    <form>
-        <input type="submit" value="Back to Home Screen">
-    </form>
+
+        <a href="HomeScreen.php">
+            <input type="submit" value="Back to Home Screen">
+        </a>
+        <form>
+        </form>
+
         <image class="img2" src="apple_family_barn_interior__full_version__by_bobthelurker-d6ekkgw.png" alt="Inside of barn""></image>
         <image class="img1"src="sprite_dino_3.png"alt="Dino"></image>
         <image class="img3" src="sprite_deer_1.png"alt="Sprite Deer"></image>
         <image class="img4" src="sprite_chick_3.png"alt="Chick"style="width:75px;height:100px;"></image>
     </body>
+
+    <script type="text/javascript">
+        /*
+        * Going to leave these as function stubs for now. Will implement behavior later.
+        * */
+        function showHealth() {
+        /*
+        * Todo: Get animal from user's file and display health.
+        * */
+        }
+    </script>
 </html>
