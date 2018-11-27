@@ -1,2 +1,2 @@
 username:Cmayfield11
-gold:1000
+gold:3000

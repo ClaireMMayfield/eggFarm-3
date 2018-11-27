@@ -1,5 +1,5 @@
 name:ilmi
-gold:99000
+gold:98500
 
 dino:0
 

@@ -1,0 +1,2 @@
+username:dryoon
+gold:1000

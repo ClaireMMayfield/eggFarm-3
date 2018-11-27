@@ -1,0 +1,6 @@
+name:goldgoldgoldgoldgoldgold:
+dino:0
+
+chick:0
+
+lizard:000

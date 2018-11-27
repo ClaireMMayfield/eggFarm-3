@@ -2,41 +2,6 @@
 session_start();
 $username = $_SESSION['username'];
 
-if($_SERVER["REQUEST_METHOD"] == "POST") {
-    $file_name = $username . "_data.txt";
-    // Behavior for pressing "Keep animal"
-    if (!empty($_POST['animal_type']))
-    {
-        $file = fopen($file_name, "a+") or die("Unable to open file: ".$file_name);
-        $animal = $_POST['animal_type'];
-        $string_to_write = "animal:" . $animal . "\r\n";
-        file_put_contents($file_name, $string_to_write, FILE_APPEND);
-        fclose($file);
-    }
-    // Behavior for pressing "Sell animal"
-    if (!empty($_POST['current_gold']))
-    {
-        $file = fopen($file_name, "a+") or die("Unable to open file: ".$file_name);
-        // Update gold in the session.
-        $current_gold = (int)$_SESSION['gold'] + 500;
-        $_SESSION['gold'] = $current_gold;
-        $file_contents = file_get_contents($file_name);
-        //Going to second line.
-        $line = trim(fgets($file));
-        $line = trim(fgets($file));
-        $tmp_arry = explode(":", $line);
-        if($tmp_arry[0] == "gold")
-        {
-            $old_gold = $tmp_arry[1];
-            $old_string = "gold:".$old_gold;
-            $new_string = "gold:" . $current_gold . "\r\n";
-            $file_contents = file_get_contents($file_name);
-            $file_contents = str_replace($old_string, $new_string, $file_contents);
-            file_put_contents($file_name, $file_contents);
-        }
-        fclose($file);
-    }
-}
 ?>
 
 <?php
