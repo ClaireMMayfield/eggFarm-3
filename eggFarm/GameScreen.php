@@ -71,6 +71,9 @@ fclose($configfile);
 <body>
 <h1>Are you ready to play, <?php echo $username?>?</h1>
 <h2>Press the start button when you are ready!</h2>
+<a href="HomeScreen.php">
+    <input type="submit" action="HomeScreen.php" value="Back to Home Screen">
+</a>
 <button id ="startButton">Start</button>
 <h3 id="your_gold">Your Gold: <?php echo($_SESSION['gold'])?> </h3>
 

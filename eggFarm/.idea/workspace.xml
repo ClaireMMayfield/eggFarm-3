@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="07b42a4b-dc74-492b-81ef-a5f783e7ecc8" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eggPlant2_files/sprite_chick_0.png" beforeDir="false" afterPath="$PROJECT_DIR$/sprite_chick_0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eggPlant2_files/sprite_chick_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/sprite_chick_1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eggPlant2_files/sprite_chick_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/sprite_chick_2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eggPlant2_files/sprite_chick_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eggPlant2_files/sprite_chick_4.png" beforeDir="false" afterPath="$PROJECT_DIR$/sprite_chick_4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eggPlant2_files/sprite_chick_5.png" beforeDir="false" afterPath="$PROJECT_DIR$/sprite_chick_5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eggPlant2_files/sprite_chick_6.png" beforeDir="false" afterPath="$PROJECT_DIR$/sprite_chick_6.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eggPlant2_files/sprite_chick_7.png" beforeDir="false" afterPath="$PROJECT_DIR$/sprite_chick_7.png" afterDir="false" />
-    </list>
+    <list default="true" id="07b42a4b-dc74-492b-81ef-a5f783e7ecc8" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,13 +64,13 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="php" value="1105" />
+          <entry key="php" value="1106" />
           <entry key="txt" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PHP" value="1105" />
+          <entry key="PHP" value="1106" />
           <entry key="PLAIN_TEXT" value="11" />
         </counts>
       </usages-collector>
@@ -99,23 +89,23 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.13483831">
+    <splitter split-orientation="horizontal" split-proportion="0.53874314">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/ilmi_data.txt">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="92">
-                  <caret line="4" column="7" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
+                <state relative-caret-position="138">
+                  <caret line="6" column="9" lean-forward="true" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Shop.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="276">
-                  <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
+                <state relative-caret-position="368">
+                  <caret line="58" column="13" lean-forward="true" selection-start-line="58" selection-start-column="13" selection-end-line="58" selection-end-column="13" />
                 </state>
               </provider>
             </entry>
@@ -124,20 +114,20 @@
       </split-first>
       <split-second>
         <leaf>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/GameScreen.php">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="345">
-                  <caret line="226" column="45" lean-forward="true" selection-start-line="226" selection-start-column="45" selection-end-line="226" selection-end-column="45" />
+                  <caret line="75" column="4" selection-start-line="75" selection-start-column="4" selection-end-line="75" selection-end-column="4" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Update.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="667">
-                  <caret line="83" column="52" selection-start-line="83" selection-start-column="52" selection-end-line="83" selection-end-column="52" />
+                <state relative-caret-position="1748">
+                  <caret line="76" lean-forward="true" selection-start-line="76" selection-end-line="76" />
                 </state>
               </provider>
             </entry>
@@ -210,10 +200,10 @@
         <option value="$PROJECT_DIR$/LoginScreen.php" />
         <option value="$PROJECT_DIR$/HomeScreen.php" />
         <option value="$PROJECT_DIR$/ilmi_data_backup.txt" />
-        <option value="$PROJECT_DIR$/Shop.php" />
-        <option value="$PROJECT_DIR$/GameScreen.php" />
         <option value="$PROJECT_DIR$/ilmi_data.txt" />
         <option value="$PROJECT_DIR$/Update.php" />
+        <option value="$PROJECT_DIR$/GameScreen.php" />
+        <option value="$PROJECT_DIR$/Shop.php" />
       </list>
     </option>
   </component>
@@ -291,12 +281,12 @@
       <workItem from="1541977792733" duration="6098000" />
       <workItem from="1542050185464" duration="11964000" />
       <workItem from="1543188776941" duration="9151000" />
-      <workItem from="1543295703933" duration="5716000" />
+      <workItem from="1543295703933" duration="6019000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43124000" />
+    <option name="totallyTimeSpent" value="43427000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -542,31 +532,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Shop.php">
+    <entry file="file://$PROJECT_DIR$/Update.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
+        <state relative-caret-position="1748">
+          <caret line="76" lean-forward="true" selection-start-line="76" selection-end-line="76" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GameScreen.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
-          <caret line="226" column="45" lean-forward="true" selection-start-line="226" selection-start-column="45" selection-end-line="226" selection-end-column="45" />
+          <caret line="75" column="4" selection-start-line="75" selection-start-column="4" selection-end-line="75" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ilmi_data.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" column="7" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
+        <state relative-caret-position="138">
+          <caret line="6" column="9" lean-forward="true" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Update.php">
+    <entry file="file://$PROJECT_DIR$/Shop.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="667">
-          <caret line="83" column="52" selection-start-line="83" selection-start-column="52" selection-end-line="83" selection-end-column="52" />
+        <state relative-caret-position="368">
+          <caret line="58" column="13" lean-forward="true" selection-start-line="58" selection-start-column="13" selection-end-line="58" selection-end-column="13" />
         </state>
       </provider>
     </entry>

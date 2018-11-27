@@ -53,15 +53,15 @@ $gold = $_SESSION['gold'];
                 totalc = gold - 500;
                 document.getElementById("total").textContent = "Gold coins:"+ " " + totalc;
             }
-            else if (selected_egg == "rareEgg") {
+            else if (selected_egg == "rare_dinoegg") {
                 totalc = gold - 1000;
                 document.getElementById("total").textContent = "Gold coins:"+ " " + totalc;
             }
-            else if (selected_egg == "lizardegg") {
+            else if (selected_egg == "superrare_lizardegg") {
                 totalc = gold - 1500;
                 document.getElementById("total").textContent = "Gold coins:"+ " " + totalc;
             }
-            else if (selected_egg == "blueegg") {
+            else if (selected_egg == "ultrarare_blueegg") {
                 totalc = gold - 2000;
                 document.getElementById("total").textContent = "Gold coins:"+ " " + totalc;
             }
