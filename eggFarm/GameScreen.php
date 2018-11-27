@@ -215,39 +215,48 @@ fclose($myfile);
     * Function for handling keeping an animal. Removes the "Keep" and "Sell" buttons from the screen.
     * */
     function keepAnimal(){
+        debugger
         var result = null;
-        var xmlhttp = new XMLHttpRequest();
         var animal = (Game.animal).replace("sprite_", "");
-        xmlhttp.open("GET", "Update.php?animal='" + animal + "'", true);
+
+        var xmlhttp = new XMLHttpRequest();
+        var variables_to_send = "animal_name='" + animal + "'";
+        xmlhttp.open("GET", ("Update.php?" + variables_to_send), true);
+        xmlhttp.onreadystatechange = complete;
         xmlhttp.send();
-        if (xmlhttp.status == 200) {
-            result = xmlhttp.responseText;
-        }
+        console.log("Status is: " + xmlhttp.status);
         // Create end game elements after the ajax call to save the animal is made.
         document.getElementById("result").innerHTML = "Good decision! You will collect gold from your animals!";
         document.getElementById('keepAnimalButton').style.display = 'none';
         document.getElementById('sellAnimalButton').style.display = 'none';
-        document.getElementById('animal_type').value = Game.animal;
+        //document.getElementById('animal_type').value = Game.animal;
+    }
+
+    // Callback function.
+    function complete() {
+        console.log("Animal was successfully sent!")
     }
 
     /*
     * Function for selling an animal.
     * */
     function sellAnimal(){
+        debugger
         // Update gold
         var new_gold = parseInt(<?php echo($_SESSION['gold'])?>) + 500;
 
         // Ajax call
-        var result = null;
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.open("GET", "Update.php?inquiry='gold'&gold='" + new_gold + "'", true);
         xmlhttp.send();
+
         //Update gold on screen if successful Ajax call
         /*
         if (xmlhttp.status == 200) {
             document.getElementById('your_gold').innerHTML = "Your new gold is: " + new_gold;
         }
         */
+
         // Create end game elements after the ajax call to save the new gold amount.
         document.getElementById("result").innerHTML = "Congrats! You'll earn gold for selling your animal!";
         document.getElementById('keepAnimalButton').style.display = 'none';

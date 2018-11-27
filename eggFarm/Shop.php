@@ -44,8 +44,8 @@ $gold = $_SESSION['gold'];
 
     <body>
     <script type="text/javascript">
-        var totalc= 1000;
         var gold = <?php echo $gold?>;
+        var totalc = <?php echo $gold?>;
 
         function purchase(x){
             var selected_egg = x.value;
