@@ -2,6 +2,23 @@
 session_start();
 $username = $_SESSION['username'];
 
+// Get gold and save it to the session.
+$file_name = $username . "_data.txt";
+$user_data = fopen($file_name, "r") or die("Unable to open file");
+$tmp_arry = [];
+while(!feof($user_data)){
+    $line = trim(fgets($user_data));
+    $tmp_arry = explode(":", $line);
+    if(!count($tmp_arry)==2){
+        continue;
+    }
+    if($tmp_arry[0] == "gold")
+    {
+        $gold = $tmp_arry[1];
+        $_SESSION['gold'] = $gold;
+    }
+}
+
 ?>
 
 <?php
@@ -15,7 +32,6 @@ while(!feof($configfile)) {
     if(count($temp) == 1)
         continue;
     $data[$temp[0]] = $temp[1];
-    //echo $tmp_arry[0] ."..".$tmp_arry[1];
 }
 fclose($configfile);
 ?>

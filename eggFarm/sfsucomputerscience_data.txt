@@ -1,4 +1,6 @@
-name:goldgoldgoldgoldgoldgold:
+name:sfsucomputerscience
+gold:1500
+
 dino:0
 
 chick:0

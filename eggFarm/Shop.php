@@ -52,29 +52,25 @@ $gold = $_SESSION['gold'];
             if (selected_egg == "common_whiteegg") {
                 totalc = gold - 500;
                 document.getElementById("total").textContent = "Gold coins:"+ " " + totalc;
-                updateGold();
             }
             else if (selected_egg == "rareEgg") {
                 totalc = gold - 1000;
                 document.getElementById("total").textContent = "Gold coins:"+ " " + totalc;
-                updateGold();
             }
             else if (selected_egg == "lizardegg") {
                 totalc = gold - 1500;
                 document.getElementById("total").textContent = "Gold coins:"+ " " + totalc;
-                updateGold();
             }
             else if (selected_egg == "blueegg") {
                 totalc = gold - 2000;
                 document.getElementById("total").textContent = "Gold coins:"+ " " + totalc;
-                updateGold();
             }
+            updateGold();
         }
         /*
         * Uses Ajax call to updates gold from the user.txt file by running "update.php"
         * @param None
-        * @return Http response code (i.e. 200 = OK, etc.)
-        * */
+        */
         function updateGold() {
             var result = null;
             var xmlhttp = new XMLHttpRequest();
@@ -83,8 +79,6 @@ $gold = $_SESSION['gold'];
             if (xmlhttp.status == 200) {
                 result = xmlhttp.responseText;
             }
-            document.getElementById("welcome").textContent = "Result is: " + result;
-            return result;
         }
     </script>
 
@@ -103,6 +97,7 @@ $gold = $_SESSION['gold'];
 
 
     <h2 id = "total" class="goldM">Your Gold: <?php echo($gold)?> </h2>
+    <h2 id = "warning"> </h2>
     <!--Div for button Row-->
     <div align="center" style="position: absolute;">
 

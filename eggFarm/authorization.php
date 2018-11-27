@@ -24,7 +24,6 @@ if(isset($_POST["username"]) && isset($_POST["password"]))
 
     if($finduser)
     {
-
         echo $_POST["username"]."\r\n";
         echo "is already registered!";
         include 'LoginScreen.html';

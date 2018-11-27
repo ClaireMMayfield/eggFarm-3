@@ -1,3 +1,24 @@
+<?php
+session_start();
+$_SESSION['name_check'] = false;
+
+$file_name = "user.txt";
+$users_file = fopen($file_name, "r") or die("Unable to open file");
+$users = [];
+$tmp_arry = [];
+$size = 0;
+while(!feof($users_file)){
+    $line = trim(fgets($users_file));
+    $tmp_arry = explode(":", $line);
+    if(!count($tmp_arry)==2){
+        continue;
+    }
+    array_push($users, $tmp_arry[0]);
+    $size = count($users) - 1;
+}
+$users_to_json = json_encode((array)$users);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,6 +38,7 @@
         <form name="myForm" onsubmit="return validateForm()" name="create" method="POST" action="authorization.php">
         Enter Username:
         <input type="text" name="username" id = "username" required>
+            <h3 id="warning"></h3>
             <br>
             <div id="message">
           <h3>Password must contain the following:</h3>
@@ -37,6 +59,19 @@
 
         <script>
          var x= document.getElementById("password").value;
+         let existing_users = <?php echo($users_to_json)?>;
+
+         function checkUserName() {
+             let name_check = false;
+             let username_to_test = document.getElementById("username");
+             if(existing_users.includes(username_to_test)) {
+                name_check = false;
+             }
+             else {
+                 name_check = true;
+             }
+             return name_check;
+         }
 
         function validateForm()
         {
@@ -44,11 +79,12 @@
             var capital = document.getElementById("capital");
             var number = document.getElementById("number");
             var length = document.getElementById("length");
+            let username_html_element = document.getElementById("username");
 
             x.onfocus = function(){
             document.getElementById("message").style.display = "block";
             }
-           x.onblur = function() {
+            x.onblur = function() {
             document.getElementById("message").style.display = "none";
             }
             x.onkeyup = function() {
@@ -88,6 +124,17 @@
             length.classList.remove("valid");
             length.classList.add("invalid");
             }
+            }
+
+            if(checkUserName()) {
+                username.classList.remove("invalid");
+                username.classList.add("valid");
+                document.getElementById("warning").innerText = "Username has not been taken!";
+            }
+            else{
+                username.classList.remove("valid");
+                username.classList.add("invalid");
+                document.getElementById("warning").innerText = "Username already taken! Try another!";
             }
             var message = document.getElementById('confirmMessage')
     }

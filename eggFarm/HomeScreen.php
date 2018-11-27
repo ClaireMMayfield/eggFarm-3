@@ -1,23 +1,5 @@
 <?php
 
-
-/*
-             var username = "None";
-            var score = "None";
-            var text = "";
-            username = <?php echo(json_encode($users[0])) ?>;
-            score = <?php echo(json_encode($scores[0])) ?>;
-            text += "<p>" + "1. " + username + " Score:" + score + "coins</p> <br>";
-            username = <?php echo(json_encode($users[1])) ?>;
-            score = <?php echo(json_encode($scores[1])) ?>;
-            text += "<p>" + "2. " + username + " Score:" + score + "coins</p> <br>";
-            username = <?php echo(json_encode($users[2])) ?>;
-            score = <?php echo(json_encode($scores[2])) ?>;
-            text += "<p>" + "3. " + username + " Score:" + score + "coins</p> <br>";
-            username = <?php echo(json_encode($users[3])) ?>;
-            score = <?php echo(json_encode($scores[3])) ?>;
-            text += "<p>" + "4. " + username + " Score:" + score + "coins</p> <br>";
- * */
 session_start();
 $username = $_SESSION['username'];
 
@@ -40,6 +22,8 @@ while(!feof($user_data)){
 
 
 // Calculate top ten scores by iterating through users.txt, getting gold, and sorting it.
+
+// Gets all users.
 $file_name = "user.txt";
 $userfile = fopen($file_name, "r") or die("Unable to open file");
 $users = [];
@@ -124,7 +108,11 @@ $users_to_json = json_encode((array)$users);
 
         <h3>Top Ten Scores:</h3>
         <h3 id="scoreboard"></h3>
+
         <script>
+            // Prints the top ten users and their scores. If there are less than ten users,
+            // prints the users in order.
+
             var users = <?php echo $users_to_json ?>;
             var scores = <?php echo $scores_to_json ?>;
 
