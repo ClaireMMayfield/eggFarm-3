@@ -1,8 +1,10 @@
 name:ilmi
-gold:98500
-
+gold:4000
 dino:0
 
 chick:0
 
 lizard:0
+
+
+:0

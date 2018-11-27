@@ -1,6 +1,10 @@
 <?php
-
 session_start();
+
+if(empty($_SESSION['username'])) {
+    header("LOCATION:LoginScreen.php");
+}
+
 $username = $_SESSION['username'];
 
 // Get gold and save it to the session.
