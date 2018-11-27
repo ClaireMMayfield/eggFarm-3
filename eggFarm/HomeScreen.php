@@ -43,8 +43,8 @@ $scores = [];
 $i = 0;
 // Get scores of all users, store top 10.
 while($i < $size) {
-    $username = $users[$i];
-    $file_name = $username."_data.txt";
+    $temp_username = $users[$i];
+    $file_name = $temp_username."_data.txt";
     $user_data_file = fopen($file_name, "r") or die("Unable to open file");
     while(!feof($user_data_file)){
         $line = trim(fgets($user_data_file));
