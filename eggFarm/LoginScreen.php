@@ -41,6 +41,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     if($password == $database_password) {
         echo("You are now logged in, ".$username);
         $_SESSION['username'] = $username;
+
+
         header("location: HomeScreen.php");
     }
     else {

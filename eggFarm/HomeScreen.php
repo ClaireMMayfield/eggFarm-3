@@ -26,46 +26,43 @@ while(!feof($user_data)){
 
 
 // Calculate top ten scores by iterating through users.txt, getting gold, and sorting it.
+// Database connection credentials.
+$servername = "127.0.0.1:3306";
+$database_username = "ilmi";
+$password = "Ilmi456!";
+$dbname = "eggfarm";
 
-// Gets all users.
-$file_name = "user.txt";
-$userfile = fopen($file_name, "r") or die("Unable to open file");
-$users = [];
-$tmp_arry = [];
-$size = 0;
-while(!feof($userfile)){
-    $line = trim(fgets($userfile));
-    $tmp_arry = explode(":", $line);
-    if(!count($tmp_arry)==2){
-        continue;
-    }
-    array_push($users, $tmp_arry[0]);
-    $size = count($users) - 1;
+// Create connection
+$connection = new mysqli($servername, $database_username, $password, $dbname);
+if ($connection->connect_error) {
+    die("Connection failed: " . $connection->connect_error);
+} else {
+    echo("Connection working!");
 }
 
-$scores = [];
-$i = 0;
-// Get scores of all users, store top 10.
-while($i < $size) {
-    $temp_username = $users[$i];
-    $file_name = $temp_username."_data.txt";
-    $user_data_file = fopen($file_name, "r") or die("Unable to open file");
-    while(!feof($user_data_file)){
-        $line = trim(fgets($user_data_file));
-        $tmp_arry = explode(":", $line);
-        if(!count($tmp_arry)==2){
-            continue;
-        }
-        // If we found a gold value, push the value onto the scores array.
-        if($tmp_arry[0] == "gold")
-        {
-            $score = $tmp_arry[1];
-            array_push($scores, $score);
-        }
-    }
-    $i++;
+// Querying the database for the top 10 users.
+$query = "SELECT username FROM user_info ORDER BY gold ASC LIMIT 10";
+$top_users  = array();
+$result = $connection -> multi_query($query);
+while ($row = mysqli_fetch_row($query)) {
+    array_push($top_users, $row);
 }
+$sql_statement->close();
 
+$top_gold  = array();
+$query = "SELECT gold FROM user_info ORDER BY gold ASC LIMIT 10;";
+$result = $connection -> multi_query($query);
+while ($row = $result -> mysqli_next_result())
+//
+{
+    array_push($top_users, $row);
+}
+$sql_statement->close();
+
+$users_to_json = json_encode((array)$top_users);
+$scores_to_json = json_encode((array)$top_gold);
+
+/*
 // Sort scores and users simultaneously.
 for($i = 0; $i < count($scores); $i++){
     $score_value = $scores[$i];
@@ -82,7 +79,7 @@ for($i = 0; $i < count($scores); $i++){
 
 $scores_to_json = json_encode((array)$scores);
 $users_to_json = json_encode((array)$users);
-
+*/
 ?>
 
 <!DOCTYPE html>
@@ -116,7 +113,7 @@ $users_to_json = json_encode((array)$users);
         <script>
             // Prints the top ten users and their scores. If there are less than ten users,
             // prints the users in order.
-
+            debugger
             var users = <?php echo $users_to_json ?>;
             var scores = <?php echo $scores_to_json ?>;
 

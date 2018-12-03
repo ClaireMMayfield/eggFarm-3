@@ -1,8 +1,8 @@
 <?php
 $servername = "127.0.0.1:3306";
-$username = "ilmi";
-$password = "Ilmi456!";
-$dbname = "eggfarm";
+$database_username = "Claire_Mayfield";
+//$password = PASSWORD GOES HERE
+$dbname = "User";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -15,6 +15,13 @@ else {
     echo("Connection working!");
 }
 
+/*
+ * SELECT
+ * CREATE
+ * DROP <TABLENAME>
+ * UPDATE
+ * INSERT
+ * */
 
 $sql = "INSERT INTO login (username, password) VALUES ('Cmayfield11!', 'Cmay456!')";
 
