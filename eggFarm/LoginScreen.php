@@ -59,8 +59,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <img src = "image014.png" alt = "Red Barn" style = "width:400px; height:400px;">
         <h2>Don't have an account? Sign up here!</h2>
-        <form>
+        <a href="RegistrationPage.php">
             <input type="submit" value="Sign Up">
-        </form>
+        </a>
     </body>
 </html>

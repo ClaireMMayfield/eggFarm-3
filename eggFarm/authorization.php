@@ -42,8 +42,6 @@ if(isset($_POST["username"]) && isset($_POST["password"])) {
     if ($result == $new_username) {
         echo $new_username . "\r\n";
         echo "is already registered!";
-        include 'LoginScreen.html';
-        header("Location: LoginScreen.php");
     } else {
         // Creates login database entry with new credentials
         $sql_statement = "INSERT INTO login (username, password) VALUES ('$new_username', '$new_password')";
@@ -59,7 +57,11 @@ if(isset($_POST["username"]) && isset($_POST["password"])) {
         } else {
             echo "Error: " . $sql_statement . "<br>" . $connection->error;
         }
+        echo("Registration successful!");
     }
+    sleep(2);
+    include 'LoginScreen.html';
+    header("Location: LoginScreen.php");
     $connection->close();
 }
 ?>

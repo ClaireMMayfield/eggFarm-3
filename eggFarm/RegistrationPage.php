@@ -1,22 +1,5 @@
 <?php
 session_start();
-$_SESSION['name_check'] = false;
-
-$file_name = "user.txt";
-$users_file = fopen($file_name, "r") or die("Unable to open file");
-$users = [];
-$tmp_arry = [];
-$size = 0;
-while(!feof($users_file)){
-    $line = trim(fgets($users_file));
-    $tmp_arry = explode(":", $line);
-    if(!count($tmp_arry)==2){
-        continue;
-    }
-    array_push($users, $tmp_arry[0]);
-    $size = count($users) - 1;
-}
-$users_to_json = json_encode((array)$users);
 ?>
 
 <!DOCTYPE html>
@@ -41,17 +24,14 @@ $users_to_json = json_encode((array)$users);
             <h3 id="warning"></h3>
             <br>
             <div id="message">
-          <h3>Password must contain the following:</h3>
-          <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
-          <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
-          <p id="number" class="invalid">A <b>number</b></p>
-          <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+              <h3>Password must contain the following:</h3>
+              <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+              <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+              <p id="number" class="invalid">A <b>number</b></p>
+              <p id="length" class="invalid">Minimum <b>8 characters</b></p>
              </div>
-
         Enter Password:
         <input type="password" name="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required><br>
-
-
         <button type ="submit" name="login" class ="btn">Login</button>
 
     </form>
@@ -59,19 +39,6 @@ $users_to_json = json_encode((array)$users);
 
         <script>
          var x= document.getElementById("password").value;
-         let existing_users = <?php echo($users_to_json)?>;
-
-         function checkUserName() {
-             let name_check = false;
-             let username_to_test = document.getElementById("username");
-             if(existing_users.includes(username_to_test)) {
-                name_check = false;
-             }
-             else {
-                 name_check = true;
-             }
-             return name_check;
-         }
 
         function validateForm()
         {
@@ -79,9 +46,8 @@ $users_to_json = json_encode((array)$users);
             var capital = document.getElementById("capital");
             var number = document.getElementById("number");
             var length = document.getElementById("length");
-            let username_html_element = document.getElementById("username");
 
-            x.onfocus = function(){
+            x.onfocus = function() {
             document.getElementById("message").style.display = "block";
             }
             x.onblur = function() {
@@ -93,7 +59,7 @@ $users_to_json = json_encode((array)$users);
             letter.classList.remove("invalid");
             letter.classList.add("valid");
             }
-            else{
+            else {
             letter.classList.remove("valid");
             letter.classlist.add("invalid");
             }
@@ -123,18 +89,6 @@ $users_to_json = json_encode((array)$users);
             else{
             length.classList.remove("valid");
             length.classList.add("invalid");
-            }
-            }
-
-            if(checkUserName()) {
-                username.classList.remove("invalid");
-                username.classList.add("valid");
-                document.getElementById("warning").innerText = "Username has not been taken!";
-            }
-            else{
-                username.classList.remove("valid");
-                username.classList.add("invalid");
-                document.getElementById("warning").innerText = "Username already taken! Try another!";
             }
             var message = document.getElementById('confirmMessage')
     }
