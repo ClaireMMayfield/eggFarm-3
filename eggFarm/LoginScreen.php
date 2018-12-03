@@ -10,23 +10,43 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_REQUEST['username'];
     $password = $_REQUEST['password'];
 
-    $userfile = fopen("user.txt", "r") or die("Unable to open user file:".$username);
-    $tmp_arry = [];
-    while(!feof($userfile)){
-        $line = trim(fgets($userfile));
-        $tmp_arry = explode(":", $line);
-        if(!count($tmp_arry)==2){
-            continue;
-        }
-        if($tmp_arry[0] ==$username and $tmp_arry[1]==$password)
-        {
-            echo("You are now logged in, ".$username);
-            $_SESSION['username'] = $username;
-            header("location: HomeScreen.php");
-        }
+    // Database connection credentials.
+    $servername = "127.0.0.1:3306";
+    $database_username = "ilmi";
+    $password = "Ilmi456!";
+    $dbname = "eggfarm";
+
+    // Create connection
+    $connection = new mysqli($servername, $database_username, $password, $dbname);
+    if ($connection -> connect_error) {
+        die("Connection failed: " . $connection -> connect_error);
+    } else {
+        echo("Connection working!");
     }
-    echo("Log in failed.");
-    return false;
+
+    // Lookup user from login table
+    $query = "SELECT password FROM login WHERE username = ?";
+    $database_password = "";
+    echo("Querying database");
+
+    // Preparing and executing the sql statement. Results are bound to $result.
+    $sql_statement = $connection -> prepare($query);
+    $sql_statement->bind_param("s", $username);
+    $sql_statement->execute();
+    $sql_statement->bind_result($database_password);
+    $sql_statement->fetch();
+    $sql_statement->close();
+
+    // If the database's password and the given password match, log the user in.
+    if($password == $database_password) {
+        echo("You are now logged in, ".$username);
+        $_SESSION['username'] = $username;
+        header("location: HomeScreen.php");
+    }
+    else {
+        echo("Log in failed.");
+        return false;
+    }
 }
 ?>
 

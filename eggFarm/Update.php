@@ -1,94 +1,62 @@
 <?php
 session_start();
 
-$gold = htmlspecialchars($_REQUEST['gold']);
-$animal_name = htmlspecialchars($_REQUEST['animal_name']);
-$animal_name = str_replace("'", "", $animal_name);
-$check = htmlspecialchars($_REQUEST['inquiry']);
-$filename = $_SESSION['username']."_data.txt";
-$myfile = fopen($filename, "r+") or die("Unable to open file!");
-$data = array();
-while(!feof($myfile)) {
-    $line = fgets($myfile);
-    $tmp_arry = explode(":", $line);
-    if(count($tmp_arry) <= 1)
-        continue;
-    $data[$tmp_arry[0]] = $tmp_arry[1];
-    error_log($tmp_arry[0] . "..".$tmp_arry[1]);
+// Database connection credentials.
+$servername = "127.0.0.1:3306";
+$database_username = "ilmi";
+$password = "Ilmi456!";
+$dbname = "eggfarm";
+
+// Create connection
+$connection = new mysqli($servername, $database_username, $password, $dbname);
+if ($connection->connect_error) {
+    die("Connection failed: " . $connection->connect_error);
+} else {
+    echo("Connection working!");
 }
 
-console_log($_REQUEST['animal_name']);
+// Getting possible new values from the $_REQUEST dictionary.
+$username = $_SESSION['username'];
+$inquiry = htmlspecialchars($_REQUEST['inquiry']);
+$gold = (int) htmlspecialchars($_REQUEST['gold']);
+$animal_name = htmlspecialchars($_REQUEST['animal_name']);
+$animal_name = str_replace("'", "", $animal_name);
+
+echo("Gold is: ".$_REQUEST['gold']);
+echo("Animal is: ".$animal_name);
 
 // Updates the gold if a new gold is given.
-if(!empty($gold)) {
-    $data['gold'] = $gold;
-    error_log("gold:".$gold);
+if (!empty($_REQUEST['gold'])) {
+    $sql_statement = "UPDATE user_info SET gold = '$gold' WHERE username = '$username'";
+    if ($connection -> query($sql_statement) === TRUE) {
+        echo "\nSuccessfully updated gold for ".$username." to ".$gold;
+    } else {
+        echo "Error: " . $sql_statement . "<br>" . $connection->error;
+    }
+    $_SESSION['gold'] = $gold;
 }
 
 // Increments the animal by one if an animal name is given.
 if(!empty($_REQUEST['animal_name'])) {
-    //$data['dino'] = $_REQUEST['animal_name'];
-    console_log($_REQUEST['animal_name']);
-    console_log($animal_name);
-    if($animal_name == "dino") {
-        $data['dino'] += 1;
+    // Finds the existing value for the animal entry.
+    $query = "SELECT $animal_name FROM user_info WHERE username = ?";
+    $result = "";
+
+    // Preparing and executing the sql statement. Results are bound to $result.
+    $sql_statement = $connection->prepare($query);
+    $sql_statement->bind_param("s", $username);
+    $sql_statement->execute();
+    $sql_statement->bind_result($result);
+    $sql_statement->fetch();
+    $sql_statement->close();
+    // Increments the number of animals for the given animal type.
+    $result = (int) $result + 1;
+
+    // Update the database with the new incremented value.
+    $sql_statement = "UPDATE user_info SET $animal_name = '$result' WHERE username = '$username'";
+    if ($connection -> query($sql_statement) === TRUE) {
+        echo "\nSuccessfully updated animal count for ".$username."'s ".$animal_name." to ".$result;
+    } else {
+        echo "Error: " . $sql_statement . "<br>" . $connection->error;
     }
-    else if($animal_name == "chick") {
-        $data['chick'] += 1;
-    }
-    else if($animal_name == "lizard") {
-        $data['lizard'] += 1;
-    }
-    error_log("animal:".$data['animal']."Received:".$animal_name);
-} else
-    $data[$animal_name] = 1;
-
-// Calculates gold accumulated from animals over time.
-$cTime = time();
-$diff = ($cTime - $data['last_updated'])/100;
-if($diff > 3600*1000)
-    $diff = 0;
-if($diff > 1) {
-    $earning = ($data['dino'] + $data['lizard'] + $data['chick']) * round($diff);
-    $msd = "Diff: " . $diff . " Earning:" . $earning;
-    $data['gold'] += $earning;
 }
-
-if(!empty($check) and $check=='gold') {
-    echo $data['gold'];
-    error_log("Inquiry for gold is called:".$data['gold']);
-}
-
-writeToFile($data);
-
-/*
- * Updates the user's data file by rewriting the entire file
- * with updated values. Creates entry for each animal if that entry is missing.
- * */
-function writeToFile($data) {
-    if(empty($data['dino']))
-        $data['dino'] = 0;
-    if(empty($data['chick']))
-        $data['chick'] = 0;
-    if(empty($data['lizard']))
-        $data['lizard'] = 0;
-    $filename = $_SESSION['username']."_data.txt";
-    $myFile = fopen($filename, "r+") or die("Unable to open file!");
-
-    $gold = str_replace("'", "", $data['gold']);
-
-    fwrite($myFile, "name:".$data['name']);
-    fwrite($myFile, "gold:".$gold);
-    fwrite($myFile, "\n"."dino:".$data['dino']);
-    fwrite($myFile, "\n"."chick:".$data['chick']);
-    fwrite($myFile, "\n"."lizard:".$data['lizard']);
-}
-
-function console_log( $data ){
-    echo '<script>';
-    echo 'console.log('. json_encode( $data ) .')';
-    echo '</script>';
-}
-
-// Update session variables to hold new gold value after writing.
-$_SESSION['gold'] = $gold;

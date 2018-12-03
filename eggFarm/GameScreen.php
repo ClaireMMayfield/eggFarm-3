@@ -1,23 +1,7 @@
 <?php
 session_start();
 $username = $_SESSION['username'];
-
-// Get gold and save it to the session.
-$file_name = $username . "_data.txt";
-$user_data = fopen($file_name, "r") or die("Unable to open file");
-$tmp_arry = [];
-while(!feof($user_data)){
-    $line = trim(fgets($user_data));
-    $tmp_arry = explode(":", $line);
-    if(!count($tmp_arry)==2){
-        continue;
-    }
-    if($tmp_arry[0] == "gold")
-    {
-        $gold = $tmp_arry[1];
-        $_SESSION['gold'] = $gold;
-    }
-}
+$gold = $_SESSION['gold'];
 ?>
 
 <?php
@@ -142,21 +126,6 @@ fclose($myfile);
     tapArea.addEventListener("click", addUp, false);
     startButton.addEventListener("click",start,false);
 
-
-    /*
-    * Loads the configuration file for the game
-    */
-    function loadFile(filePath) {
-        var result = null;
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("GET", filePath, false);
-        xmlhttp.send();
-        if (xmlhttp.status==200) {
-            result = xmlhttp.responseText;
-        }
-        return result;
-    }
-
     /*
     * Starts the game, assigns type of egg for image lookups.
     * */
@@ -245,21 +214,15 @@ fclose($myfile);
     * */
     function sellAnimal(){
         debugger
+        var previous_gold = <?php echo($_SESSION['gold'])?>;
         // Update gold
-        var new_gold = parseInt(<?php echo($_SESSION['gold'])?>) + 500;
-
+        let new_gold = parseInt(<?php echo($_SESSION['gold'])?>) + 500;
         // Ajax call
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("GET", "Update.php?inquiry='gold'&gold='" + new_gold + "'", true);
+        let xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET", "Update.php?gold='" + new_gold + "'", true);
         xmlhttp.send();
-
-        //Update gold on screen if successful Ajax call
-        /*
-        if (xmlhttp.status == 200) {
-            document.getElementById('your_gold').innerHTML = "Your new gold is: " + new_gold;
-        }
-        */
-
+        xmlhttp.response;
+        var updated_gold = <?php echo($_SESSION['gold'])?>;
         // Create end game elements after the ajax call to save the new gold amount.
         document.getElementById("result").innerHTML = "Congrats! You'll earn gold for selling your animal!";
         document.getElementById('keepAnimalButton').style.display = 'none';
