@@ -27,6 +27,7 @@ echo("Animal is: ".$animal_name);
 
 // Updates the gold if a new gold is given.
 if (!empty($_REQUEST['gold'])) {
+    $gold = $_REQUEST['gold'];
     $sql_statement = "UPDATE user_info SET gold = '$gold' WHERE username = '$username'";
     if ($connection -> query($sql_statement) === TRUE) {
         echo "\nSuccessfully updated gold for ".$username." to ".$gold;

@@ -44,10 +44,10 @@ $gold = $_SESSION['gold'];
 
     <body>
     <script type="text/javascript">
-        var gold = <?php echo $gold?>;
-        var totalc = <?php echo $gold?>;
+        var gold = <?php echo $_SESSION['gold']?>;
+        var totalc = <?php echo $_SESSION['gold']?>;
 
-        function purchase(x){
+        function purchase(x) {
             var selected_egg = x.value;
             if (selected_egg == "common_whiteegg") {
                 totalc = gold - 500;
@@ -67,6 +67,7 @@ $gold = $_SESSION['gold'];
             }
             updateGold();
         }
+
         /*
         * Uses Ajax call to updates gold from the user.txt file by running "update.php"
         * @param None

@@ -42,6 +42,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         echo("You are now logged in, ".$username);
         $_SESSION['username'] = $username;
 
+        $gold = 0;
+        $query = "SELECT gold from user_info WHERE username = '$username'";
+        $sql_statement = $connection -> prepare($query);
+        $sql_statement->bind_param("s", $username);
+        $sql_statement->execute();
+        $sql_statement->bind_result($gold);
+        $sql_statement->fetch();
+        $sql_statement->close();
+        $_SESSION['gold'] = $gold;
 
         header("location: HomeScreen.php");
     }

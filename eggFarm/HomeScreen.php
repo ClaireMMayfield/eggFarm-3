@@ -7,24 +7,6 @@ if(empty($_SESSION['username'])) {
 
 $username = $_SESSION['username'];
 
-// Get gold and save it to the session.
-$file_name = $username . "_data.txt";
-$user_data = fopen($file_name, "r") or die("Unable to open file");
-$tmp_arry = [];
-while(!feof($user_data)){
-    $line = trim(fgets($user_data));
-    $tmp_arry = explode(":", $line);
-    if(!count($tmp_arry)==2){
-        continue;
-    }
-    if($tmp_arry[0] == "gold")
-    {
-        $gold = $tmp_arry[1];
-        $_SESSION['gold'] = $gold;
-    }
-}
-
-
 // Calculate top ten scores by iterating through users.txt, getting gold, and sorting it.
 // Database connection credentials.
 $servername = "127.0.0.1:3306";
@@ -37,49 +19,37 @@ $connection = new mysqli($servername, $database_username, $password, $dbname);
 if ($connection->connect_error) {
     die("Connection failed: " . $connection->connect_error);
 } else {
-    echo("Connection working!");
+    // echo("Connection working!");
 }
 
-// Querying the database for the top 10 users.
-$query = "SELECT username FROM user_info ORDER BY gold ASC LIMIT 10";
+// Querying the database for the top 10 users by gold values.
+$query = "SELECT username FROM user_info ORDER BY gold DESC LIMIT 10";
 $top_users  = array();
-$result = $connection -> multi_query($query);
-while ($row = mysqli_fetch_row($query)) {
-    array_push($top_users, $row);
-}
-$sql_statement->close();
+$result = $connection -> query($query);
+$rows = resultToArray($result, "username");
+$top_users = $rows;
 
+// Querying the database for the top 10 gold values.
+$query = "SELECT gold FROM user_info ORDER BY gold DESC LIMIT 10;";
 $top_gold  = array();
-$query = "SELECT gold FROM user_info ORDER BY gold ASC LIMIT 10;";
-$result = $connection -> multi_query($query);
-while ($row = $result -> mysqli_next_result())
-//
-{
-    array_push($top_users, $row);
+$result = $connection -> query($query);
+$rows = resultToArray($result, "gold");
+$top_gold = $rows;
+
+/*
+ * Converts the results from the database query into an array
+ * by extracting the needed values from the associative array.
+ * */
+function resultToArray($result, $key) {
+    $rows = array();
+    while ($row = $result->fetch_assoc()) {
+        $rows[] = $row[$key];
+    }
+    return $rows;
 }
-$sql_statement->close();
 
 $users_to_json = json_encode((array)$top_users);
 $scores_to_json = json_encode((array)$top_gold);
-
-/*
-// Sort scores and users simultaneously.
-for($i = 0; $i < count($scores); $i++){
-    $score_value = $scores[$i];
-    $user_value = $users[$i];
-    $j = $i - 1;
-    while($j >= 0 && $scores[$j] < $score_value){
-        $scores[$j + 1] = $scores[$j];
-        $users[$j + 1] = $users[$j];
-        $j--;
-    }
-    $scores[$j + 1] = $score_value;
-    $users[$j + 1] = $user_value;
-}
-
-$scores_to_json = json_encode((array)$scores);
-$users_to_json = json_encode((array)$users);
-*/
 ?>
 
 <!DOCTYPE html>
@@ -96,7 +66,7 @@ $users_to_json = json_encode((array)$users);
     </head>
     <body>
         <h1>Welcome to your farm, <?php echo($username) ?></h1>
-        <p> You have: <?php echo($gold) ?> gold. </p>
+        <p> You have: <?php echo($_SESSION['gold']) ?> gold. </p>
         <p>Here is where you can go to the shop, where you can <br> purchase supplies or eggs, and care for your animals.</p>
         <img src="image014.png" alt = "Red Barn" style = "width:400px;height:400px;""><br>
 
