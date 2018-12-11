@@ -10,8 +10,8 @@ $username = $_SESSION['username'];
 // Calculate top ten scores by iterating through users.txt, getting gold, and sorting it.
 // Database connection credentials.
 $servername = "127.0.0.1:3306";
-$database_username = "ilmi";
-$password = "Ilmi456!";
+$database_username = "Claire_MayField";
+$password = "Cmay456!";
 $dbname = "User";
 
 // Create connection
