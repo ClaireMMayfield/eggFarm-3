@@ -12,9 +12,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Database connection credentials.
     $servername = "127.0.0.1:3306";
-    $database_username = "ilmi";
-    $password = "Ilmi456!";
-    $dbname = "eggfarm";
+    $database_username = "Claire_Mayfield";
+    $password = "Cmay456!";
+    $dbname = "User";
 
     // Create connection
     $connection = new mysqli($servername, $database_username, $password, $dbname);

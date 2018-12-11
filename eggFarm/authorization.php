@@ -5,9 +5,9 @@ user.txt file. !-->
 session_start();
 // Database connection credentials.
 $servername = "127.0.0.1:3306";
-$username = "ilmi";
-$password = "Ilmi456!";
-$dbname = "eggfarm";
+$username = "Claire_Mayfield";
+$password = "Cmay456!";
+$dbname = "User";
 
 if(isset($_POST["username"]) && isset($_POST["password"])) {
     $new_username = $_POST["username"];

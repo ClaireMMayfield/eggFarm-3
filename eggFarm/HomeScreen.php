@@ -12,7 +12,7 @@ $username = $_SESSION['username'];
 $servername = "127.0.0.1:3306";
 $database_username = "ilmi";
 $password = "Ilmi456!";
-$dbname = "eggfarm";
+$dbname = "User";
 
 // Create connection
 $connection = new mysqli($servername, $database_username, $password, $dbname);
