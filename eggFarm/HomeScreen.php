@@ -10,7 +10,7 @@ $username = $_SESSION['username'];
 // Calculate top ten scores by iterating through users.txt, getting gold, and sorting it.
 // Database connection credentials.
 $servername = "127.0.0.1:3306";
-$database_username = "Claire_MayField";
+$database_username = "Claire_Mayfield";
 $password = "Cmay456!";
 $dbname = "User";
 
@@ -71,10 +71,20 @@ $scores_to_json = json_encode((array)$top_gold);
         <img src="image014.png" alt = "Red Barn" style = "width:400px;height:400px;""><br>
 
         <a href="Shop.php">
-            <input type="button" value="Go to Shop">
+            <input type="button" value="Go to Shop" id="shop">
+            <script>
+                document.getElementByID("shop").addEventListener("click", function() {
+                    document.location.href = "Shop.php";
+                })
+                </script>
         </a>
         <a href="Your_Barn.php">
-            <input type="button" value="Go to your farm">
+            <input type="button" value="Go to your farm" id="farm">
+             <script>
+                document.getElementByID("farm").addEventListener("click", function() {
+                    document.location.href = "Your_Barn.php";
+                })
+                </script>
         </a>
 
         <h3>Top Ten Scores:</h3>

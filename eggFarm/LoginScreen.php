@@ -13,11 +13,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     // Database connection credentials.
     $servername = "127.0.0.1:3306";
     $database_username = "Claire_Mayfield";
-    $password = "Cmay456!";
+    $database_password = "Cmay456!";
     $dbname = "User";
 
     // Create connection
-    $connection = new mysqli($servername, $database_username, $password, $dbname);
+    $connection = new mysqli($servername, $database_username, $database_password, $dbname);
     if ($connection -> connect_error) {
         die("Connection failed: " . $connection -> connect_error);
     } else {
@@ -56,6 +56,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     else {
         echo("Log in failed.");
+        header("location: LoginScreen.php");
         return false;
     }
 }
@@ -91,7 +92,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <img src = "image014.png" alt = "Red Barn" style = "width:400px; height:400px;">
         <h2>Don't have an account? Sign up here!</h2>
         <a href="RegistrationPage.php">
-            <input type="submit" value="Sign Up">
+            <input type="submit" value="Sign Up" id="signup">
+             <script>
+                document.getElementByID("signup").addEventListener("click", function() {
+                    document.location.href = "RegistrationPage.php";
+                })
+                </script>
         </a>
     </body>
 </html>
